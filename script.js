@@ -91,7 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         block: 'start'
                     });
                     // Set focus to the target element for keyboard users
-                    targetElement.focus();
+                    try {
+                        targetElement.focus();
+                    } catch (e) {
+                        // Focus may fail if element is not focusable
+                        console.warn('Could not focus element:', e);
+                    }
                 }
             }
         });
@@ -176,7 +181,14 @@ document.addEventListener('keydown', function(e) {
     // Alt + 1: Skip to main content
     if (e.altKey && e.key === '1') {
         e.preventDefault();
-        document.getElementById('main-content').focus();
+        const mainContent = document.getElementById('main-content');
+        if (mainContent) {
+            try {
+                mainContent.focus();
+            } catch (e) {
+                console.warn('Could not focus main content:', e);
+            }
+        }
     }
     // Alt + 0: Focus on first navigation link
     if (e.altKey && e.key === '0') {
