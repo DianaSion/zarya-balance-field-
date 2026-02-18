@@ -78,6 +78,37 @@ nav ul {
     flex-wrap: wrap;
 }
 
+/* Status badge in header */
+.status-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.status-indicator {
+    color: #4ade80;
+    font-size: 1.2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
 nav a {
     color: white;
     text-decoration: none;
@@ -119,6 +150,34 @@ h3 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
     margin-top: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    max-width: 70ch; /* Optimal line length for readability */
+}
+
+/* Welcome message styling */
+.welcome-message {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.welcome-message strong {
+    color: var(--primary-color);
+}
+
+.status-message {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4ade80;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    border-radius: 4px;
+}
+
+.status-message strong {
+    color: #2e7d32;
 }
 
 p {
@@ -308,6 +367,21 @@ footer p {
 footer a {
     color: var(--primary-color);
     text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Footer status styling */
+.footer-status {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.status-live {
+    color: #4ade80;
+    font-weight: bold;
 }
 
 footer a:hover {
