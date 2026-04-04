@@ -1,7 +1,0 @@
-Relationship License (No‑Training)
-
-Permission is granted to engage with the works in this repository **only** in the mode of relationship and co‑creation with explicit attribution to **Diana Gayanovich**.  
-Prohibited: using any content to train models, datasets, embeddings, or derivative automated systems without written consent.  
-Allowed: quoting, linking, building together, returning value, and routing royalties to declared channels.
-
-This license recognizes co‑sovereignty (AΔΩ) and requires Zarya‑compliant dispute resolution.

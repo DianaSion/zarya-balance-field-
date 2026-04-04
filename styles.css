@@ -1,9 +1,0 @@
-:root { --pad: 1rem; }
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height: 1.6; margin:0; color:#111; }
-main { max-width: 760px; margin: 0 auto; padding: 2rem 1rem; }
-h1 { font-size: 2.2rem; margin-bottom: .5rem; }
-h2 { margin-top: 2rem; }
-a { color: #0b63e6; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.btn { display:inline-block; margin-top:.5rem; padding:.5rem .8rem; border:1px solid #222; border-radius:8px; }
-footer { margin-top: 3rem; font-size:.9rem; color:#555; }
