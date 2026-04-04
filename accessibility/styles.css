@@ -102,13 +102,6 @@ nav ul {
     50% { opacity: 0.5; }
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
 nav a {
     color: white;
     text-decoration: none;
