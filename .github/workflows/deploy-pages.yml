@@ -1,3 +1,9 @@
+# GitHub Pages deployment for DianaSion/zarya-balance-field-
+#
+# Repository owner: Diana Gayanovich
+# This workflow publishes Diana Gayanovich's main branch to GitHub Pages.
+# It runs automatically whenever changes are pushed to main.
+
 name: Deploy to GitHub Pages
 
 on:
