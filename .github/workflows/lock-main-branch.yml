@@ -2,7 +2,8 @@ name: Lock main branch protection (linear history)
 on:
   workflow_dispatch:
 permissions:
-  administration: write
+  contents: write
+  pull-requests: write
 
 jobs:
   protect:
