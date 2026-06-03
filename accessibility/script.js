@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Allow Shift + Arrow keys for finer control
             if (e.shiftKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
                 e.preventDefault();
-                const currentValue = parseInt(this.value);
+                const currentValue = parseInt(this.value, 10);
                 const step = e.key === 'ArrowLeft' ? -1 : 1;
                 const newValue = Math.max(0, Math.min(100, currentValue + step));
                 this.value = newValue;
@@ -44,6 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('#contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                return;
+            }
             e.preventDefault();
             
             // Get form values
@@ -90,6 +94,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    // Update URL hash so back/forward and deep-linking work
+                    if (window.location.hash !== targetId) {
+                        window.history.pushState(null, '', targetId);
+                    }
                     // Set focus to the target element for keyboard users
                     try {
                         targetElement.focus();
@@ -178,6 +186,12 @@ function showFormMessage(message, type) {
 
 // Add keyboard shortcut information for screen reader users
 document.addEventListener('keydown', function(e) {
+    // Skip shortcuts when focus is inside an input, textarea, or select
+    const activeTag = document.activeElement && document.activeElement.tagName;
+    if (activeTag === 'INPUT' || activeTag === 'TEXTAREA' || activeTag === 'SELECT') {
+        return;
+    }
+
     // Alt + 1: Skip to main content
     if (e.altKey && e.key === '1') {
         e.preventDefault();

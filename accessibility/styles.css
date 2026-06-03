@@ -173,11 +173,6 @@ p {
     color: #2e7d32;
 }
 
-p {
-    margin-bottom: 1rem;
-    max-width: 70ch; /* Optimal line length for readability */
-}
-
 /* Feature list */
 #features ul {
     list-style: none;
@@ -375,10 +370,6 @@ footer a:hover {
 .status-live {
     color: #4ade80;
     font-weight: bold;
-}
-
-footer a:hover {
-    text-decoration: underline;
 }
 
 /* Responsive design */
