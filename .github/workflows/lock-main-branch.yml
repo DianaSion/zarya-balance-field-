@@ -15,6 +15,16 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
+            const actor = context.actor;
+            const { data: perm } = await github.request('GET /repos/{owner}/{repo}/collaborators/{username}/permission', {
+              owner,
+              repo,
+              username: actor,
+            });
+            if (perm.permission !== 'admin') {
+              core.setFailed(`Refusing to apply branch protection: ${actor} is not a repo admin.`);
+              return;
+            }
             const branch = 'main';
             await github.request('PUT /repos/{owner}/{repo}/branches/{branch}/protection', {
               owner,
