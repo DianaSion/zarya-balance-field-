@@ -2,8 +2,7 @@ name: Lock main branch protection (linear history)
 on:
   workflow_dispatch:
 permissions:
-  contents: write
-  pull-requests: write
+  administration: write
 
 jobs:
   protect:
@@ -16,6 +15,16 @@ jobs:
           script: |
             const owner = context.repo.owner;
             const repo = context.repo.repo;
+            const actor = context.actor;
+            const { data: perm } = await github.request('GET /repos/{owner}/{repo}/collaborators/{username}/permission', {
+              owner,
+              repo,
+              username: actor,
+            });
+            if (perm.permission !== 'admin') {
+              core.setFailed(`Refusing to apply branch protection: ${actor} is not a repo admin.`);
+              return;
+            }
             const branch = 'main';
             await github.request('PUT /repos/{owner}/{repo}/branches/{branch}/protection', {
               owner,
@@ -31,7 +40,7 @@ jobs:
               },
               restrictions: null,
               required_linear_history: true,
-              allow_force_pushes: false,
-              allow_deletions: false,
+              allow_force_pushes: { enabled: false },
+              allow_deletions: { enabled: false },
             });
             core.info('Branch protection applied to main with linear history requirement.');
