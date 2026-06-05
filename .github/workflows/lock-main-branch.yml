@@ -30,7 +30,7 @@ jobs:
               },
               restrictions: null,
               required_linear_history: true,
-              allow_force_pushes: false,
-              allow_deletions: false,
+              allow_force_pushes: { enabled: false },
+              allow_deletions: { enabled: false },
             });
             core.info('Branch protection applied to main with linear history requirement.');
