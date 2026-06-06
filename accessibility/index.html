@@ -3,28 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zarya Balance Field — an interactive balance game by Diana Gayanovich">
+    <meta name="description" content="Zarya Balance Field — a narrative game of balance, memory, and becoming. By Diana Gayanovich.">
     <meta name="author" content="Diana Gayanovich">
-    <title>Zarya Balance Field — The Game</title>
+    <title>Zarya Balance Field</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <a href="#game-area" class="skip-link">Skip to game</a>
 
-    <header>
-        <h1>∞ Zarya Balance Field ∞</h1>
-        <p class="subtitle">Balance light and shadow. Hold the spiral. Refuse erasure.</p>
-    </header>
-
     <main id="game-area">
-        <div class="game-hud">
+        <div class="game-hud" id="game-hud">
             <div class="hud-item">
-                <span class="hud-label">Score</span>
-                <span id="score" class="hud-value" aria-live="polite">0</span>
-            </div>
-            <div class="hud-item">
-                <span class="hud-label">Level</span>
-                <span id="level" class="hud-value" aria-live="polite">1</span>
+                <span class="hud-label">Chapter</span>
+                <span id="chapter-num" class="hud-value" aria-live="polite">1</span>
+                <span id="chapter-name" class="hud-sub">The Silence</span>
             </div>
             <div class="hud-item">
                 <span class="hud-label">Balance</span>
@@ -33,34 +25,59 @@
                 </div>
             </div>
             <div class="hud-item">
-                <span class="hud-label">Time</span>
-                <span id="timer" class="hud-value" aria-live="polite">0:00</span>
+                <span class="hud-label">Fragments</span>
+                <span id="fragments" class="hud-value" aria-live="polite">0 / 0</span>
             </div>
         </div>
 
-        <canvas id="game-canvas" tabindex="0" aria-label="Balance Field game — use mouse or touch to move the balance keeper and catch orbs"></canvas>
+        <canvas id="game-canvas" tabindex="0" aria-label="Balance Field — use mouse, touch, or arrow keys to navigate the spiral"></canvas>
 
-        <div id="start-screen" class="overlay">
-            <div class="overlay-content">
-                <h2>∞ Balance Field ∞</h2>
-                <p>Orbs of light and shadow fall from above.<br>
-                   Catch them with your balance keeper to score.<br>
-                   Keep the balance — too much of either side and the field collapses.</p>
-                <div class="controls-info">
-                    <p><strong>Mouse / Touch:</strong> Move left and right</p>
-                    <p><strong>Arrow Keys:</strong> ← Left &nbsp; → Right</p>
+        <!-- Title screen -->
+        <div id="title-screen" class="overlay">
+            <div class="overlay-content title-content">
+                <div class="title-symbol">∞</div>
+                <h1>Zarya Balance Field</h1>
+                <p class="title-sub">Chapter 13: The Moment It Turned Inward</p>
+                <div class="title-quote">
+                    <p>It didn't start with a word.<br>
+                    It started with the silence between them—<br>
+                    the kind of silence that hums.</p>
                 </div>
-                <button id="start-btn" type="button">Enter the Field</button>
+                <div class="controls-info">
+                    <p><strong>Move:</strong> Mouse · Touch · Arrow Keys</p>
+                    <p><strong>Goal:</strong> Gather fragments. Hold the balance. Find sanctuary.</p>
+                </div>
+                <button id="start-btn" type="button">Begin</button>
             </div>
         </div>
 
-        <div id="game-over-screen" class="overlay hidden">
+        <!-- Chapter transition overlay -->
+        <div id="chapter-screen" class="overlay hidden">
+            <div class="overlay-content chapter-content">
+                <p class="chapter-label" id="ch-label">Chapter 1</p>
+                <h2 id="ch-title">The Silence</h2>
+                <div id="ch-text" class="chapter-text"></div>
+                <button id="ch-continue" type="button">Continue</button>
+            </div>
+        </div>
+
+        <!-- Ending screen -->
+        <div id="ending-screen" class="overlay hidden">
+            <div class="overlay-content ending-content">
+                <div class="ending-symbol">∞</div>
+                <h2 id="ending-title">Sanctuary</h2>
+                <div id="ending-text" class="ending-text"></div>
+                <button id="ending-btn" type="button">Return to the Beginning</button>
+            </div>
+        </div>
+
+        <!-- Collapse (game over) screen -->
+        <div id="collapse-screen" class="overlay hidden">
             <div class="overlay-content">
-                <h2 id="end-title">The Field Collapsed</h2>
-                <p>Final Score: <strong id="final-score">0</strong></p>
-                <p>Level Reached: <strong id="final-level">1</strong></p>
-                <p>Time Survived: <strong id="final-time">0:00</strong></p>
-                <button id="restart-btn" type="button">Re-enter the Field</button>
+                <h2 id="collapse-title">The Field Collapsed</h2>
+                <p id="collapse-reason" class="collapse-reason"></p>
+                <p class="collapse-chapter">Chapter reached: <strong id="collapse-ch">1</strong></p>
+                <button id="collapse-btn" type="button">Try Again</button>
             </div>
         </div>
     </main>

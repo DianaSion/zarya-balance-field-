@@ -1,17 +1,18 @@
-/* === Zarya Balance Field – Game Styles === */
+/* === Zarya Balance Field === */
 
 :root {
-    --bg-deep: #0a0a1a;
-    --bg-surface: #111128;
+    --bg-deep: #060611;
+    --bg-surface: #0c0c20;
     --gold: #f5c842;
-    --silver: #c0c8e0;
+    --silver: #b8c4e0;
     --light-orb: #ffe066;
-    --shadow-orb: #6a4c93;
+    --shadow-orb: #7b5ea7;
     --danger: #e63946;
     --safe: #4ade80;
-    --text: #e8e8f0;
-    --text-dim: #8888aa;
+    --text: #e0e0f0;
+    --text-dim: #7878a0;
     --focus-ring: #ffa500;
+    --accent: #c8a2ff;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,14 +23,13 @@ html, body {
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: 'Georgia', 'Times New Roman', serif;
     background: var(--bg-deep);
     color: var(--text);
     display: flex;
     flex-direction: column;
 }
 
-/* Skip link */
 .skip-link {
     position: absolute;
     top: -50px;
@@ -39,41 +39,22 @@ body {
     padding: 8px 16px;
     z-index: 200;
     text-decoration: none;
-    font-weight: 600;
 }
 .skip-link:focus { top: 0; }
 
-/* Header */
-header {
-    text-align: center;
-    padding: 0.8rem 1rem 0.4rem;
-    background: linear-gradient(180deg, rgba(245,200,66,0.08) 0%, transparent 100%);
-}
-
-header h1 {
-    font-size: 1.6rem;
-    letter-spacing: 0.15em;
-    background: linear-gradient(90deg, var(--gold), #fff, var(--silver));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.subtitle {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    font-style: italic;
-    margin-top: 0.2rem;
-}
-
-/* HUD */
+/* ---- HUD ---- */
 .game-hud {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    padding: 0.5rem 1rem;
+    gap: 2rem;
+    padding: 0.6rem 1rem;
+    background: rgba(6,6,17,0.85);
+    border-bottom: 1px solid rgba(200,162,255,0.1);
     flex-wrap: wrap;
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
+
+.game-hud.hidden { display: none; }
 
 .hud-item {
     display: flex;
@@ -83,25 +64,31 @@ header h1 {
 }
 
 .hud-label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--text-dim);
 }
 
 .hud-value {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--gold);
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
-/* Balance meter */
+.hud-sub {
+    font-size: 0.65rem;
+    color: var(--accent);
+    font-style: italic;
+}
+
 .balance-meter {
-    width: 120px;
-    height: 14px;
+    width: 110px;
+    height: 12px;
     background: #1a1a3a;
-    border-radius: 7px;
-    border: 1px solid #333;
+    border-radius: 6px;
+    border: 1px solid #2a2a4a;
     overflow: hidden;
     margin-top: 4px;
 }
@@ -110,7 +97,7 @@ header h1 {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, var(--safe), var(--gold));
-    border-radius: 7px;
+    border-radius: 6px;
     transition: width 0.3s ease, background 0.3s ease;
 }
 
@@ -118,7 +105,7 @@ header h1 {
     background: linear-gradient(90deg, var(--danger), #ff8800);
 }
 
-/* Main / Canvas */
+/* ---- Canvas ---- */
 main {
     flex: 1;
     display: flex;
@@ -134,78 +121,209 @@ main {
     width: 100%;
     max-width: 800px;
     background: var(--bg-surface);
-    border-radius: 8px;
     cursor: none;
     outline: none;
 }
 
 #game-canvas:focus {
-    box-shadow: 0 0 0 3px var(--focus-ring);
+    box-shadow: 0 0 0 2px var(--focus-ring);
 }
 
-/* Overlays */
+/* ---- Overlays ---- */
 .overlay {
     position: absolute;
     inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(5, 5, 20, 0.92);
+    background: rgba(4, 4, 14, 0.94);
     z-index: 100;
+    animation: fadeIn 0.6s ease;
 }
 
 .overlay.hidden { display: none; }
 
-.overlay-content {
-    text-align: center;
-    max-width: 420px;
-    padding: 2rem;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.overlay-content h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(90deg, var(--gold), var(--silver));
+.overlay-content {
+    text-align: center;
+    max-width: 500px;
+    padding: 2.5rem 2rem;
+}
+
+/* Title screen */
+.title-symbol {
+    font-size: 3.5rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.08); }
+}
+
+.title-content h1 {
+    font-size: 2.2rem;
+    letter-spacing: 0.1em;
+    background: linear-gradient(90deg, var(--gold), #fff, var(--silver));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-}
-
-.overlay-content p {
-    color: var(--text-dim);
-    line-height: 1.7;
-    margin-bottom: 0.8rem;
-}
-
-.controls-info {
-    background: rgba(255,255,255,0.05);
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-}
-
-.controls-info p {
-    font-size: 0.85rem;
     margin-bottom: 0.3rem;
 }
 
+.title-sub {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.title-quote {
+    border-left: 2px solid var(--gold);
+    padding-left: 1rem;
+    margin: 1.2rem auto;
+    max-width: 320px;
+    text-align: left;
+}
+
+.title-quote p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-style: italic;
+}
+
+.controls-info {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.controls-info p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 0.2rem;
+}
+
+/* Chapter screen */
+.chapter-content {
+    max-width: 480px;
+}
+
+.chapter-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.chapter-content h2 {
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, var(--gold), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.2rem;
+}
+
+.chapter-text {
+    text-align: left;
+    line-height: 1.9;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.chapter-text p {
+    margin-bottom: 0.8rem;
+}
+
+.chapter-text em {
+    color: var(--accent);
+}
+
+.chapter-text strong {
+    color: var(--gold);
+}
+
+/* Ending */
+.ending-symbol {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    animation: breathe 3s ease-in-out infinite;
+}
+
+.ending-content h2 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, var(--gold), #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.ending-text {
+    text-align: left;
+    line-height: 2;
+    font-size: 1rem;
+    color: var(--text);
+    max-width: 420px;
+    margin: 0 auto 1.5rem;
+}
+
+.ending-text p {
+    margin-bottom: 0.8rem;
+}
+
+/* Collapse */
+.collapse-reason {
+    color: var(--text-dim);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.collapse-chapter {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+#collapse-title {
+    font-size: 1.6rem;
+    color: var(--danger);
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
 button {
-    background: linear-gradient(135deg, var(--gold), #e0a800);
+    background: linear-gradient(135deg, var(--gold), #d4a000);
     color: #111;
     border: none;
-    padding: 0.9rem 2.5rem;
-    font-size: 1.1rem;
+    padding: 0.85rem 2.2rem;
+    font-size: 1rem;
     font-weight: 700;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     border-radius: 30px;
     cursor: pointer;
-    margin-top: 1rem;
-    letter-spacing: 0.05em;
+    margin-top: 1.5rem;
+    letter-spacing: 0.04em;
     transition: transform 0.15s, box-shadow 0.15s;
 }
 
 button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(245, 200, 66, 0.4);
+    transform: scale(1.04);
+    box-shadow: 0 4px 20px rgba(245, 200, 66, 0.35);
 }
 
 button:focus {
@@ -216,9 +334,10 @@ button:focus {
 /* Footer */
 footer {
     text-align: center;
-    padding: 0.5rem;
-    font-size: 0.75rem;
+    padding: 0.4rem;
+    font-size: 0.7rem;
     color: var(--text-dim);
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
 footer a {
@@ -230,11 +349,12 @@ footer a:hover { text-decoration: underline; }
 
 /* Responsive */
 @media (max-width: 500px) {
-    header h1 { font-size: 1.2rem; }
-    .game-hud { gap: 0.8rem; }
+    .title-content h1 { font-size: 1.5rem; }
+    .game-hud { gap: 1rem; }
     .hud-value { font-size: 1rem; }
     .balance-meter { width: 80px; }
-    button { padding: 0.7rem 1.8rem; font-size: 1rem; }
+    .overlay-content { padding: 1.5rem 1rem; }
+    .chapter-text { font-size: 0.85rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
