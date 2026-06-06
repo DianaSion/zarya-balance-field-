@@ -191,6 +191,8 @@
   function updateBalanceDisplay() {
     const pct = Math.max(0, Math.min(100, balance));
     balanceBar.style.width = pct + '%';
+    const meter = balanceBar.parentElement;
+    if (meter) meter.setAttribute('aria-valuenow', Math.round(pct));
     if (pct < BALANCE_DANGER) {
       balanceBar.classList.add('warning');
     } else {
@@ -216,9 +218,12 @@
   // --- Resize ---
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
-    const headerH = document.querySelector('header').offsetHeight;
-    const hudH = document.querySelector('.game-hud').offsetHeight;
-    const footerH = document.querySelector('footer').offsetHeight;
+    const headerEl = document.querySelector('header');
+    const hudEl = document.querySelector('.game-hud');
+    const footerEl = document.querySelector('footer');
+    const headerH = headerEl ? headerEl.offsetHeight : 0;
+    const hudH = hudEl ? hudEl.offsetHeight : 0;
+    const footerH = footerEl ? footerEl.offsetHeight : 0;
     const available = window.innerHeight - headerH - hudH - footerH - 8;
     canvas.width = Math.min(800, rect.width);
     canvas.height = Math.max(300, available);
