@@ -260,6 +260,20 @@
     }
   }
 
+  // ── Rounded rectangle helper (cross-browser) ──
+  function drawRoundedRect(c, x, y, w, h, r) {
+    c.moveTo(x + r, y);
+    c.lineTo(x + w - r, y);
+    c.arcTo(x + w, y, x + w, y + r, r);
+    c.lineTo(x + w, y + h - r);
+    c.arcTo(x + w, y + h, x + w - r, y + h, r);
+    c.lineTo(x + r, y + h);
+    c.arcTo(x, y + h, x, y + h - r, r);
+    c.lineTo(x, y + r);
+    c.arcTo(x, y, x + r, y, r);
+    c.closePath();
+  }
+
   // ── Keeper ──
   function drawKeeper() {
     var x = keeper.x, y = keeper.y, w = keeper.width, h = keeper.height;
@@ -280,7 +294,7 @@
     bodyGrad.addColorStop(1, '#b8c4e0');
     ctx.fillStyle = bodyGrad;
     ctx.beginPath();
-    ctx.roundRect(x - w / 2, y - h / 2, w, h, 7);
+    drawRoundedRect(ctx, x - w / 2, y - h / 2, w, h, 7);
     ctx.fill();
 
     // Symbol
