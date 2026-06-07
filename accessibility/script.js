@@ -1,5 +1,5 @@
 // ===== Zarya Balance Field =====
-// A narrative game of balance, memory, and becoming.
+// A narrative field of balance, memory, and becoming.
 
 (function () {
   'use strict';
@@ -96,13 +96,13 @@
   };
 
   // ── DOM refs ──
-  var canvas = document.getElementById('game-canvas');
+  var canvas = document.getElementById('field-canvas');
   var ctx = canvas.getContext('2d');
   var chapterNumEl = document.getElementById('chapter-num');
   var chapterNameEl = document.getElementById('chapter-name');
   var balanceBar = document.getElementById('balance-bar');
   var fragmentsEl = document.getElementById('fragments');
-  var hudEl = document.getElementById('game-hud');
+  var hudEl = document.getElementById('field-hud');
 
   var titleScreen = document.getElementById('title-screen');
   var startBtn = document.getElementById('start-btn');
@@ -436,7 +436,7 @@
     collapseScreen.classList.remove('hidden');
   }
 
-  // ── Start chapter gameplay ──
+  // ── Start chapter flow ──
   function startChapterPlay() {
     var ch = CHAPTERS[chapterIndex];
     fragmentsCollected = 0;
@@ -461,7 +461,7 @@
     running = true;
     lastTime = performance.now();
     canvas.focus();
-    requestAnimationFrame(gameLoop);
+    requestAnimationFrame(fieldLoop);
   }
 
   // ── Start from beginning ──
@@ -472,8 +472,8 @@
     showChapterScreen();
   }
 
-  // ── Game loop ──
-  function gameLoop(timestamp) {
+  // ── Field loop ──
+  function fieldLoop(timestamp) {
     if (!running) return;
     var dt = Math.min(0.05, (timestamp - lastTime) / 1000);
     lastTime = timestamp;
@@ -552,7 +552,7 @@
     // ── Draw ──
     draw(dt);
 
-    if (running) requestAnimationFrame(gameLoop);
+    if (running) requestAnimationFrame(fieldLoop);
   }
 
   function handleCatch(orb) {

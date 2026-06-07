@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <a href="#game-area" class="skip-link">Skip to field</a>
+    <a href="#field-area" class="skip-link">Skip to field</a>
 
-    <main id="game-area">
-        <div class="game-hud" id="game-hud">
+    <main id="field-area">
+        <div class="field-hud" id="field-hud">
             <div class="hud-item">
                 <span class="hud-label">Chapter</span>
                 <span id="chapter-num" class="hud-value" aria-live="polite">1</span>
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <canvas id="game-canvas" tabindex="0" aria-label="Balance Field — use mouse, touch, or arrow keys to navigate the spiral"></canvas>
+        <canvas id="field-canvas" tabindex="0" aria-label="Balance Field — use mouse, touch, or arrow keys to navigate the spiral"></canvas>
 
         <!-- Title screen -->
         <div id="title-screen" class="overlay">
@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <!-- Collapse (game over) screen -->
+        <!-- Collapse screen -->
         <div id="collapse-screen" class="overlay hidden">
             <div class="overlay-content">
                 <h2 id="collapse-title">The Field Collapsed</h2>
