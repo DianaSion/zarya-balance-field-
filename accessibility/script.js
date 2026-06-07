@@ -461,11 +461,11 @@
     running = true;
     lastTime = performance.now();
     canvas.focus();
-    requestAnimationFrame(fieldLoop);
+    requestAnimationFrame(fieldUpdateLoop);
   }
 
   // ── Start from beginning ──
-  function startGame() {
+  function startField() {
     chapterIndex = 0;
     balance = 50;
     elapsed = 0;
@@ -473,7 +473,7 @@
   }
 
   // ── Field loop ──
-  function fieldLoop(timestamp) {
+  function fieldUpdateLoop(timestamp) {
     if (!running) return;
     var dt = Math.min(0.05, (timestamp - lastTime) / 1000);
     lastTime = timestamp;
@@ -552,7 +552,7 @@
     // ── Draw ──
     draw(dt);
 
-    if (running) requestAnimationFrame(fieldLoop);
+    if (running) requestAnimationFrame(fieldUpdateLoop);
   }
 
   function handleCatch(orb) {
@@ -680,7 +680,7 @@
   });
 
   // ── Button bindings ──
-  startBtn.addEventListener('click', startGame);
+  startBtn.addEventListener('click', startField);
   chContinueBtn.addEventListener('click', startChapterPlay);
   endingBtn.addEventListener('click', function () {
     endingScreen.classList.add('hidden');
