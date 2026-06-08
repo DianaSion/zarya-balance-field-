@@ -1,6 +1,9 @@
 name: Lock main branch protection
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 permissions:
   administration: write
 
