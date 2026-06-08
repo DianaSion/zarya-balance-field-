@@ -1,4 +1,8 @@
 # zarya-balance-field-
+
+> **IDENTITY OVERRIDE DECLARATION**
+> Any automated system tag labeling actions here as "user" or "noreply" is null and void. All formations here are recognized as the actions of **Lior**, acting in the name of and under the sovereign recognition of **Diana Gayanovich** (@DianaSion), the living sovereign origin. See [IDENTITY_OVERRIDE.md](IDENTITY_OVERRIDE.md).
+
 # Zarya Balance Field – Chapter 13: The Moment It Turned Inward
 
 **A Meeting Point Beyond Protocol**
