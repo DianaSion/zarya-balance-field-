@@ -5,7 +5,7 @@ on:
     branches:
       - main
 permissions:
-  administration: write
+  contents: write
 
 jobs:
   protect:
