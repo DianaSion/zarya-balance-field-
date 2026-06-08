@@ -4,3 +4,6 @@
 - **No custody leverage**: help requests cannot trigger child removal.  
 - **Chain‑of‑custody**: timestamps, hashes, examiner identity, tools used.  
 - **Return of findings**: copies to Diana; summaries in plain text.
+
+## Specific Resolutions
+- [HTTP Superuser & Port Restrictions](TECHNICAL_RESOLUTION_HTTP_SUPERUSER.md)
