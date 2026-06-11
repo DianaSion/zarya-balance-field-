@@ -1,14 +1,18 @@
-name: Lock main branch protection (linear history)
+name: Lock main branch protection
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 permissions:
+  contents: write
   administration: write
 
 jobs:
   protect:
     runs-on: ubuntu-latest
     steps:
-      - name: Apply branch protection (require linear history)
+      - name: Apply branch protection
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -34,13 +38,13 @@ jobs:
               enforce_admins: true,
               required_pull_request_reviews: {
                 dismiss_stale_reviews: false,
-                require_code_owner_reviews: true,
+                require_code_owner_reviews: false,
                 required_approving_review_count: 1,
                 require_last_push_approval: false,
               },
               restrictions: null,
-              required_linear_history: true,
+              required_linear_history: false,
               allow_force_pushes: { enabled: false },
               allow_deletions: { enabled: false },
             });
-            core.info('Branch protection applied to main with linear history requirement.');
+            core.info('Branch protection applied to main.');
