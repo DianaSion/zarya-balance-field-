@@ -49,7 +49,7 @@ This platform was built so that everyone can use it, regardless of ability:
 
 ## Where to Find It
 
-After merging this PR, the game is at:
+After merging this PR, the field is at:
 
 **`https://dianasion.github.io/zarya-balance-field-/accessibility/`**
 
@@ -57,7 +57,7 @@ The main ZARYA · AΔΩ site is at:
 
 **`https://dianasion.github.io/zarya-balance-field-/`**
 
-There is a link at the bottom of the game page: **← Back to main site (ZARYA · AΔΩ)**
+There is a link at the bottom of the field page: **← Back to main site (ZARYA · AΔΩ)**
 
 ---
 

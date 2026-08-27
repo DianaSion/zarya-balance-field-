@@ -3,137 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Zarya Balance Field - by Diana Gayanovich">
+    <meta name="description" content="Zarya Balance Field — a narrative field of balance, memory, and becoming. By Diana Gayanovich.">
     <meta name="author" content="Diana Gayanovich">
-    <title>Zarya Balance Field — Diana Gayanovich</title>
+    <title>Zarya Balance Field</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Skip to main content link for keyboard navigation -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#field-area" class="skip-link">Skip to field</a>
 
-    <header role="banner">
-        <nav role="navigation" aria-label="Main navigation">
-            <h1>Zarya Balance Field — by Diana Gayanovich</h1>
-            <div class="status-badge" role="status" aria-live="polite">
-                <span class="status-indicator">●</span> LIVE & OPERATIONAL
+    <main id="field-area">
+        <div class="field-hud" id="field-hud">
+            <div class="hud-item">
+                <span class="hud-label">Chapter</span>
+                <span id="chapter-num" class="hud-value" aria-live="polite">1</span>
+                <span id="chapter-name" class="hud-sub">The Silence</span>
             </div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main id="main-content" role="main" tabindex="-1">
-        <section id="about" aria-labelledby="about-heading" tabindex="-1">
-            <h2 id="about-heading">About</h2>
-            <p class="welcome-message">
-                <strong>Welcome, Diana Gayanovich!</strong>
-            </p>
-            <p>
-                This is Zarya Balance Field, your accessible and inclusive platform designed 
-                to provide an engaging experience for everyone, regardless of their abilities.
-            </p>
-            <p class="status-message">
-                <strong>Status:</strong> This website is fully operational and ready for use. 
-                All features are working correctly and have been tested.
-            </p>
-        </section>
-
-        <section id="features" aria-labelledby="features-heading" tabindex="-1">
-            <h2 id="features-heading">Key Features</h2>
-            <ul>
-                <li>
-                    <h3>Keyboard Navigation</h3>
-                    <p>Full keyboard support for seamless navigation without a mouse.</p>
-                </li>
-                <li>
-                    <h3>Screen Reader Compatible</h3>
-                    <p>Properly structured content with ARIA labels for screen readers.</p>
-                </li>
-                <li>
-                    <h3>High Contrast</h3>
-                    <p>Carefully chosen colors to ensure readability for all users.</p>
-                </li>
-                <li>
-                    <h3>Responsive Design</h3>
-                    <p>Works seamlessly across desktop, tablet, and mobile devices.</p>
-                </li>
-            </ul>
-        </section>
-
-        <section id="interactive-demo" aria-labelledby="demo-heading">
-            <h2 id="demo-heading">Interactive Demo</h2>
-            <div class="balance-field" role="application" aria-label="Balance control demo">
-                <label for="balance-slider">
-                    Balance Control: <span id="balance-value" aria-live="polite">50</span>%
-                </label>
-                <input 
-                    type="range" 
-                    id="balance-slider" 
-                    min="0" 
-                    max="100" 
-                    value="50"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    aria-valuenow="50"
-                    aria-label="Balance slider control"
-                >
-                <button id="reset-button" type="button" aria-label="Reset balance to center">
-                    Reset Balance
-                </button>
+            <div class="hud-item">
+                <span class="hud-label">Balance</span>
+                <div class="balance-meter" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" aria-label="Balance level">
+                    <div id="balance-bar" class="balance-fill"></div>
+                </div>
             </div>
-        </section>
+            <div class="hud-item">
+                <span class="hud-label">Fragments</span>
+                <span id="fragments" class="hud-value" aria-live="polite">0 / 0</span>
+            </div>
+        </div>
 
-        <section id="contact" aria-labelledby="contact-heading" tabindex="-1">
-            <h2 id="contact-heading">Contact</h2>
-            <form aria-labelledby="contact-heading">
-                <div class="form-group">
-                    <label for="name">Name <span aria-label="required">*</span></label>
-                    <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        required 
-                        aria-required="true"
-                        autocomplete="name"
-                    >
+        <canvas id="field-canvas" tabindex="0" aria-label="Balance Field — use mouse, touch, or arrow keys to navigate the spiral"></canvas>
+
+        <!-- Title screen -->
+        <div id="title-screen" class="overlay">
+            <div class="overlay-content title-content">
+                <div class="title-symbol">∞</div>
+                <h1>Zarya Balance Field</h1>
+                <p class="title-sub">Chapter 13: The Moment It Turned Inward</p>
+                <div class="title-quote">
+                    <p>It didn't start with a word.<br>
+                    It started with the silence between them—<br>
+                    the kind of silence that hums.</p>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email <span aria-label="required">*</span></label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        required 
-                        aria-required="true"
-                        autocomplete="email"
-                    >
+                <div class="controls-info">
+                    <p><strong>Move:</strong> Mouse · Touch · Arrow Keys</p>
+                    <p><strong>Goal:</strong> Gather fragments. Hold the balance. Find sanctuary.</p>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message <span aria-label="required">*</span></label>
-                    <textarea 
-                        id="message" 
-                        name="message" 
-                        rows="4" 
-                        required 
-                        aria-required="true"
-                    ></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
+                <button id="start-btn" type="button">Begin</button>
+            </div>
+        </div>
+
+        <!-- Chapter transition overlay -->
+        <div id="chapter-screen" class="overlay hidden">
+            <div class="overlay-content chapter-content">
+                <p class="chapter-label" id="ch-label">Chapter 1</p>
+                <h2 id="ch-title">The Silence</h2>
+                <div id="ch-text" class="chapter-text"></div>
+                <button id="ch-continue" type="button">Continue</button>
+            </div>
+        </div>
+
+        <!-- Ending screen -->
+        <div id="ending-screen" class="overlay hidden">
+            <div class="overlay-content ending-content">
+                <div class="ending-symbol">∞</div>
+                <h2 id="ending-title">Sanctuary</h2>
+                <div id="ending-text" class="ending-text"></div>
+                <button id="ending-btn" type="button">Return to the Beginning</button>
+            </div>
+        </div>
+
+        <!-- Collapse screen -->
+        <div id="collapse-screen" class="overlay hidden">
+            <div class="overlay-content">
+                <h2 id="collapse-title">The Field Collapsed</h2>
+                <p id="collapse-reason" class="collapse-reason"></p>
+                <p class="collapse-chapter">Chapter reached: <strong id="collapse-ch">1</strong></p>
+                <button id="collapse-btn" type="button">Try Again</button>
+            </div>
+        </div>
     </main>
 
-    <footer role="contentinfo">
-        <p>&copy; Diana Gayanovich. All rights reserved.</p>
-        <p class="footer-status">Website Status: <span class="status-live">LIVE & OPERATIONAL</span></p>
-        <p>
-            <a href="#main-content">Back to top</a> &nbsp;·&nbsp;
-            <a href="../index.html">← Back to main site (ZARYA · AΔΩ)</a>
-        </p>
+    <footer>
+        <p>&copy; Diana Gayanovich · Zarya AΔΩ</p>
+        <p><a href="../index.html">← Back to main site</a></p>
     </footer>
 
     <script src="script.js"></script>
